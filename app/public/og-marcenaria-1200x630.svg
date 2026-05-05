@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2a2a2a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Gold accent bar -->
+  <rect x="0" y="0" width="1200" height="8" fill="#D4AF37"/>
+  
+  <!-- Main content -->
+  <g>
+    <!-- Decorative elements -->
+    <circle cx="100" cy="100" r="40" fill="#D4AF37" opacity="0.2"/>
+    <circle cx="1100" cy="530" r="50" fill="#D4AF37" opacity="0.15"/>
+    
+    <!-- Title -->
+    <text x="600" y="180" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="#D4AF37" letter-spacing="2">
+      Marcenaria
+    </text>
+    <text x="600" y="260" font-family="Arial, sans-serif" font-size="72" font-weight="bold" text-anchor="middle" fill="white" letter-spacing="2">
+      Alto Padrão
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="600" y="330" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="#E0E0E0">
+      Projetos Personalizados em Goiânia
+    </text>
+    
+    <!-- Description -->
+    <text x="600" y="390" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" fill="#B0B0B0">
+      Design • Funcionalidade • Acabamento Impecável
+    </text>
+    
+    <!-- Bottom accent -->
+    <line x1="400" y1="450" x2="800" y2="450" stroke="#D4AF37" stroke-width="3"/>
+    
+    <!-- Footer text -->
+    <text x="600" y="510" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#888888">
+      Transformando ambientes em obras de arte
+    </text>
+  </g>
+</svg>

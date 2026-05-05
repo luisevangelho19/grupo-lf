@@ -1,0 +1,12 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630' viewBox='0 0 1200 630'>
+  <rect width='1200' height='630' fill='#0A2A5B' />
+  <rect x='60' y='90' width='1080' height='450' rx='24' fill='#ffffff10' />
+  <g transform='translate(90,120)'>
+    <text x='0' y='80' font-family='Inter, sans-serif' font-size='48' fill='#fff' font-weight='800'>Política de Privacidade</text>
+    <text x='0' y='140' font-family='Inter, sans-serif' font-size='20' fill='#e6eef6'>Grupo LF Reparos — como tratamos e protegemos suas informações.</text>
+  </g>
+  <g transform='translate(900,440)'>
+    <rect width='200' height='120' rx='12' fill='#ffffff20' />
+    <text x='20' y='60' font-family='Inter, sans-serif' font-size='16' fill='#fff' font-weight='700'>Grupo LF</text>
+  </g>
+</svg>
