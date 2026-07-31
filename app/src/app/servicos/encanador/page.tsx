@@ -188,124 +188,52 @@ export default function EncanadorPage() {
               Fotos reais do nosso atendimento em Goiânia: instalações de torneiras, montagem de tubulações, sifões e caixa d&apos;água.
             </p>
 
-            {/* 3x3 Grid (9 Realistic Brazilian Plumber Action Photos 1:1) */}
+            {/* Grid de 5 Fotos Reais em Ação (1:1) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
               
-              {/* Photo 1: Reparo de sifão de pia */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
-                <img
-                  src="/gallery/galeria-encanador-1.webp"
-                  alt="Encanador realizando troca de sifão em pia de cozinha no Brasil"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Troca e Ajuste de Sifão de Pia</span>
-                  <span className="text-sky-400 text-xs font-medium">Instalação de Sifão Sanfonado Tigre e Vedações</span>
-                </div>
-              </div>
-
-              {/* Photo 2: Instalação de torneira monocomando */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
-                <img
-                  src="/gallery/galeria-encanador-2.webp"
-                  alt="Encanador instalando torneira monocomando cromada em bancada de mármore"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Instalação de Torneira Monocomando</span>
-                  <span className="text-sky-400 text-xs font-medium">Fixação e Engates Flexíveis com Teflon</span>
-                </div>
-              </div>
-
-              {/* Photo 3: Colagem de tubulação PVC */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+              {/* Photo 1: Colagem de tubulação PVC */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800">
                 <img
                   src="/gallery/galeria-encanador-3.webp"
                   alt="Encanador colando tubulação de PVC com adesivo Tigre"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Soldagem de Tubulação de PVC</span>
-                  <span className="text-sky-400 text-xs font-medium">Conexão com Adesivo Plástico Tigre</span>
-                </div>
               </div>
 
-              {/* Photo 4: Instalação de torneiras e registros */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+              {/* Photo 2: Troca de registros e válvulas */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800">
                 <img
                   src="/gallery/galeria-encanador-4.webp"
-                  alt="Encanador ajustando torneiras e registros com chave de aperto"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  alt="Encanador ajustando registros com chave de aperto"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Troca de Torneiras e Registros</span>
-                  <span className="text-sky-400 text-xs font-medium">Ajuste de Registros com Chave de Aperto</span>
-                </div>
               </div>
 
-              {/* Photo 5: Montagem de tubulação PEX */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+              {/* Photo 3: Conexão de engates flexíveis */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800">
                 <img
                   src="/gallery/galeria-encanador-5.webp"
-                  alt="Encanador conectando válvulas e tubulações de água sob bancada"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  alt="Encanador conectando engates flexíveis sob bancada"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Montagem de Tubulação PEX e Registros</span>
-                  <span className="text-sky-400 text-xs font-medium">Instalação de Válvulas para Água Quente e Fria</span>
-                </div>
               </div>
 
-              {/* Photo 6: Manutenção e limpeza de caixa d'água */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
-                <img
-                  src="/gallery/galeria-encanador-6.webp"
-                  alt="Higienização e manutenção em caixa d'água residencial"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Limpeza de Caixa d&apos;Água</span>
-                  <span className="text-sky-400 text-xs font-medium">Higienização e Manutenção de Bóia de Entrada</span>
-                </div>
-              </div>
-
-              {/* Photo 7: Instalação de torneira e cuba de cozinha */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+              {/* Photo 4: Instalação de cuba de cozinha */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800">
                 <img
                   src="/gallery/galeria-encanador-7.webp"
-                  alt="Encanador instalando torneira de cozinha e vedações de cuba"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  alt="Encanador instalando cuba de cozinha e vedações"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Instalação de Torneira de Cozinha</span>
-                  <span className="text-sky-400 text-xs font-medium">Montagem de Cuba, Torneira e Vedações</span>
-                </div>
               </div>
 
-              {/* Photo 8: Montagem de tubulação residencial */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+              {/* Photo 5: Montagem de tubulação na parede */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-800">
                 <img
                   src="/gallery/galeria-encanador-8.webp"
-                  alt="Encanador montando ramal residencial de água"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  alt="Encanador montando ramal de água em parede"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Montagem de Redes Hidráulicas</span>
-                  <span className="text-sky-400 text-xs font-medium">Instalação de Canos de Água Residencial</span>
-                </div>
-              </div>
-
-              {/* Photo 9: Instalação de louças sanitárias */}
-              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
-                <img
-                  src="/gallery/galeria-encanador-9.webp"
-                  alt="Encanador realizando conexão hidráulica de bancada e torneira"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
-                  <span className="text-white font-bold text-sm">Instalação de Vaso Sanitário e Louças</span>
-                  <span className="text-sky-400 text-xs font-medium">Fixação de Louças e Conexão de Engates</span>
-                </div>
               </div>
 
             </div>
