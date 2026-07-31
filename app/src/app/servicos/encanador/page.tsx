@@ -1,277 +1,682 @@
 import React from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
-import { MdSchedule, MdRequestQuote, MdVerified, MdGroups, MdConstruction, MdSpeed, MdEmergency, MdCall, MdWaterDrop, MdPlumbing, MdBuild, MdShower, MdCleaningServices, MdLocalFireDepartment, MdExpandMore } from 'react-icons/md'
+import { 
+  MdCall, 
+  MdCheckCircle, 
+  MdWaterDrop, 
+  MdAccessTime, 
+  MdLocationOn,
+  MdHome,
+  MdBuild,
+  MdPlumbing,
+  MdShower,
+  MdCleaningServices,
+  MdPerson,
+  MdShield,
+  MdSpeed,
+  MdAttachMoney,
+  MdWorkspacePremium,
+  MdStar,
+  MdInvertColors
+} from 'react-icons/md'
 import ServiceJsonLd from '../../../components/ServiceJsonLd'
 import FloatingWhatsappButton from '~/components/FloatingWhatsappButton'
-import TestimonialsSection from '~/components/TestimonialsSection'
 
 const _base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://servicoslf.com.br'
+
 export const metadata = {
-  title: 'Encanador Profissional em Goiânia — Soluções em Vazamentos',
-  description: 'Encanador especializado em soluções de vazamentos. Quebramos parede, corrigimos 100% do problema e deixamos limpo. Reparos hidráulicos e desentupimento 24h.',
+  title: 'Encanador Profissional em Goiânia — Instalações e Reparos Hidráulicos',
+  description: 'Encanador especializado em Goiânia: instalação e troca de torneiras, registros, sifões, tubulação PVC e PEX, limpeza de caixa d\'água e reparos hidráulicos.',
   openGraph: {
-    title: 'Encanador Profissional em Goiânia — Soluções em Vazamentos',
-    description: 'Encanador especializado em soluções de vazamentos. Quebramos parede, corrigimos 100% do problema e deixamos limpo. Reparos hidráulicos e desentupimento 24h.',
+    title: 'Encanador Profissional em Goiânia — Instalações e Reparos Hidráulicos',
+    description: 'Encanador especializado em Goiânia: instalação e troca de torneiras, registros, sifões, tubulação PVC e PEX, limpeza de caixa d\'água e reparos hidráulicos.',
     url: `${_base}/servicos/encanador`,
-    images: [{ url: `${_base}/services/encanador.jpg`, width: 1200, height: 630 }],
+    images: [{ url: `${_base}/gallery/encanador-hero.webp`, width: 1200, height: 630 }],
   },
   alternates: { canonical: `${_base}/servicos/encanador` },
 }
 
 export default function EncanadorPage() {
+  const whatsappNumber = process.env.NEXT_PUBLIC_SITE_WHATSAPP_NUMBER ?? '5562991157746'
+  const whatsappMsg = 'Olá, preciso de atendimento com encanador em Goiânia.'
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`
+
   return (
-    <main className="flex-1 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
-      <div className="relative flex h-auto w-full flex-col group/design-root overflow-x-hidden">
-        <ServiceJsonLd
-          name="Encanador Profissional"
-          description="Encanador especializado em soluções de vazamentos. Quebramos parede, corrigimos 100% do problema e deixamos limpo. Reparos hidráulicos e desentupimento 24h em Goiânia."
-          provider={{ name: 'Grupo LF', telephone: '(62) 99115-7746', url: 'https://servicoslf.com.br', email: 'contato@servicoslf.com.br' }}
-          serviceType="encanador"
-          areaServed="Goiânia, GO"
-          priceRange="R$120 - R$900"
-          image={'/services/encanador.jpg'}
-        />
-        <div className="layout-container flex h-full grow flex-col">
-          {/* Hero Section */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-[#0d47a1] z-0" aria-hidden="true" />
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="flex min-h-[60vh] md:min-h-[70vh] flex-col gap-6 items-center justify-center text-center py-20">
-                <div className="flex flex-col gap-4">
-                  <h1 className="text-white text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-6xl font-display">
-                    Soluções em Vazamentos em Goiânia
-                  </h1>
-                  <h2 className="text-white/90 text-lg font-normal leading-normal max-w-2xl mx-auto sm:text-xl">
-                    Seu vazamento está à vista? Quebramos a parede, corrigimos 100% do problema e deixamos tudo limpo e restaurado. Atendimento 24 horas para emergências.
-                  </h2>
+    <main className="flex-1 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-body">
+      <ServiceJsonLd
+        name="Encanador Profissional em Goiânia"
+        description="Encanador especializado em instalações hidráulicas, troca de torneiras, reparo de tubulações, sifões, caixas d'água e manutenção residencial e comercial em Goiânia."
+        provider={{ name: 'Grupo LF', telephone: '(62) 99115-7746', url: 'https://servicoslf.com.br', email: 'contato@servicoslf.com.br' }}
+        serviceType="encanador"
+        areaServed="Goiânia, GO"
+        priceRange="R$120 - R$900"
+        image="/gallery/encanador-hero.webp"
+      />
+
+      <div className="w-full">
+        {/* ---------------------------------------------------- */}
+        {/* 1. HERO SECTION                                      */}
+        {/* ---------------------------------------------------- */}
+        <section className="relative w-full bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 py-12 md:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              
+              {/* Left Column (Text & CTAs) */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left">
+                
+                {/* High Contrast Badge Tag */}
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#0B132B] text-sky-400 font-black text-xs sm:text-sm uppercase tracking-widest border border-sky-500/40 shadow-md mb-5">
+                  <MdWaterDrop size={20} className="text-sky-400" />
+                  <span>ENCANADOR EM GOIÂNIA</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                  <span className="text-slate-300 font-bold">ATENDIMENTO RÁPIDO</span>
                 </div>
-                <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-                    <a
-                    href={`https://wa.me/${process.env.NEXT_PUBLIC_SITE_WHATSAPP_NUMBER ?? '5562991157746'}`}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Chamar Grupo LF no WhatsApp (abrir em nova aba)"
-                    className="btn-whatsapp"
-                  >
-                    <FaWhatsapp size={20} aria-hidden="true" />
-                    <span className="truncate">Chamar no WhatsApp</span>
-                  </a>
+
+                {/* Main H1 Title */}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-950 dark:text-white leading-[1.1] tracking-tight mb-5">
+                  <span className="block text-sky-600 dark:text-sky-400 text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight mb-2">
+                    Encanador em Goiânia
+                  </span>
+                  Serviços Hidráulicos <span className="bg-sky-500 text-white px-3 py-1 rounded-xl inline-block mt-1.5 font-extrabold shadow-sm">Residenciais e Comerciais</span>
+                </h1>
+
+                {/* Subtitle Paragraph */}
+                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl font-medium">
+                  Instalação e reparo de torneiras, registros, sifões, tubulações em PVC e PEX, limpeza de caixa d&apos;água e louças sanitárias com total segurança e rapidez em Goiânia e região.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
                   <a
-                    href={`https://wa.me/${process.env.NEXT_PUBLIC_SITE_WHATSAPP_NUMBER ?? '5562991157746'}?text=${encodeURIComponent('Olá, gostaria de solicitar um orçamento gratuito para serviços de encanador em Goiânia. Poderiam me ajudar?')}`}
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label="Pedir orçamento gratuito pelo WhatsApp (abre em nova aba)"
-                    className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white/10 border border-white/50 text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-white/20 transition-colors"
+                    aria-label="Chamar Encanador no WhatsApp"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-[#0B132B] hover:bg-[#1E293B] text-white text-base font-bold transition-all shadow-md hover:shadow-lg gap-2.5"
                   >
-                    <span className="truncate">Solicitar Orçamento</span>
+                    <FaWhatsapp size={22} className="text-emerald-400" />
+                    <span>CHAMAR NO WHATSAPP</span>
                   </a>
+
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Ligar para Encanador Agora"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white text-base font-bold transition-all gap-2.5"
+                  >
+                    <MdCall size={22} className="text-sky-500" />
+                    <span>LIGAR AGORA</span>
+                  </a>
+                </div>
+
+                {/* 4 Feature Badges */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800 w-full">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 shrink-0">
+                      <MdCheckCircle size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Serviço Garantido</span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-sky-100 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0">
+                      <MdWaterDrop size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Instalação Precisa</span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shrink-0">
+                      <MdAccessTime size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Atendimento Rápido</span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 shrink-0">
+                      <MdLocationOn size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Goiânia e Região</span>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Right Column (Hero Image with Overlay Badge) */}
+              <div className="lg:col-span-5 relative flex justify-center">
+                <div className="relative w-full max-w-md lg:max-w-none">
+                  
+                  {/* Hero Photo */}
+                  <img
+                    src="/gallery/encanador-hero.webp"
+                    alt="Encanador profissional executando serviço hidráulico em Goiânia"
+                    className="w-full h-[400px] sm:h-[480px] object-cover rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800"
+                  />
+
+                  {/* Floating Overlay Badge */}
+                  <div className="absolute -bottom-6 -right-2 sm:bottom-6 sm:-left-6 bg-[#0B132B] text-white p-4 sm:p-5 rounded-2xl shadow-2xl border border-slate-700/80 flex items-center gap-3.5 max-w-[280px]">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-sky-500 text-white font-black shrink-0">
+                      <MdWaterDrop size={26} />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-xs font-black uppercase tracking-wider text-sky-400">Garantia LF</span>
+                      <span className="block text-xs sm:text-sm font-extrabold leading-snug">ATENDIMENTO RÁPIDO E CONFIÁVEL!</span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
+
             </div>
-            {/* background replaced with solid blue for contrast (no image) */}
           </div>
+        </section>
 
-          <main className="flex flex-col items-center">
-            <div className="layout-content-container flex flex-col w-full max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 gap-16 sm:gap-20">
-              {/* Resumo de Destaques */}
-              <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                <div className="flex flex-col items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                  <div className="text-[#0d47a1] text-4xl"><MdSchedule size={36} aria-hidden="true" /></div>
-                  <div className="flex flex-col gap-1">
-                    <h3 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Atendimento 24h</h3>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Emergências a qualquer hora do dia ou da noite. Chegamos rápido.</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                  <div className="text-[#0d47a1] text-4xl"><MdRequestQuote size={36} aria-hidden="true" /></div>
-                  <div className="flex flex-col gap-1">
-                    <h3 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Orçamento sem Compromisso</h3>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Avaliação justa e transparente antes de iniciar qualquer serviço.</p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                  <div className="text-[#0d47a1] text-4xl"><MdVerified size={36} aria-hidden="true" /></div>
-                  <div className="flex flex-col gap-1">
-                    <h3 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Garantia de Serviço</h3>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Tranquilidade com a nossa garantia de qualidade em todos os reparos.</p>
-                  </div>
-                </div>
-              </section>
+        {/* ---------------------------------------------------- */}
+        {/* 2. GALERIA DE SERVIÇOS (FOTOS REALISTAS EM AÇÃO 1:1)   */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-sky-500 mb-2">
+              GALERIA DE SERVIÇOS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
+              Confira alguns dos nossos serviços hidráulicos
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-12">
+              Fotos reais do nosso atendimento em Goiânia: instalações de torneiras, montagem de tubulações, sifões e caixa d&apos;água.
+            </p>
 
-              {/* Por que nos escolher */}
-              <section className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div className="flex-1">
-                  <img alt="Encanador profissional em Goiânia" className="rounded-xl object-cover w-full h-auto aspect-square md:aspect-auto" src="/sobre-nos.avif" />
+            {/* 3x3 Grid (9 Realistic Brazilian Plumber Action Photos 1:1) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              
+              {/* Photo 1: Reparo de sifão de pia */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-1.webp"
+                  alt="Encanador realizando troca de sifão em pia de cozinha no Brasil"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Troca e Ajuste de Sifão de Pia</span>
+                  <span className="text-sky-400 text-xs font-medium">Instalação de Sifão Sanfonado Tigre e Vedações</span>
                 </div>
-                <div className="flex-1 flex flex-col gap-6">
-                  <h2 className="text-[#0d47a1] dark:text-secondary text-sm font-bold uppercase tracking-wider font-display">Nossos Diferenciais</h2>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold font-display">Por que Confiar na Nossa Solução de Vazamentos?</h3>
-                  <div className="flex flex-col gap-6">
-                    <div className="flex items-start gap-4">
-                        <div className="text-[#0d47a1] flex items-center justify-center rounded-full bg-[#0d47a1]/10 dark:bg-secondary/10 shrink-0 size-12 mt-1">
-                        <MdGroups className="text-[#0d47a1]" size={20} aria-hidden="true" />
-                      </div>
-                      <div>
-                        <p className="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Solução Completa e Definitiva</p>
-                        <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Não apenas identificamos, mas resolvemos 100% do problema. Quebramos parede se necessário, corrigimos a raiz do vazamento e restauramos o local com acabamento de qualidade.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="text-[#0d47a1] flex items-center justify-center rounded-full bg-[#0d47a1]/10 dark:bg-secondary/10 shrink-0 size-12 mt-1">
-                        <MdConstruction className="text-[#0d47a1]" size={20} aria-hidden="true" />
-                      </div>
-                      <div>
-                        <p className="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Limpeza e Restauração Garantidas</p>
-                        <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Após a correção do vazamento, fazemos a limpeza completa do ambiente. Você recebe seu espaço limpo, organizado e como se nada tivesse acontecido.</p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="text-[#0d47a1] flex items-center justify-center rounded-full bg-[#0d47a1]/10 dark:bg-secondary/10 shrink-0 size-12 mt-1">
-                        <MdSpeed className="text-[#0d47a1]" size={20} aria-hidden="true" />
-                      </div>
-                      <div>
-                        <p className="text-text-light dark:text-text-dark text-lg font-bold leading-normal">Execução Rápida e Eficiente</p>
-                        <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Nossa equipe trabalha com agilidade e precisão. Minimizamos o tempo de interrupção do seu dia e maximizamos a qualidade do reparo.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+              </div>
 
-              {/* Atendimento Emergencial 24 Horas */}
-              <section className="bg-[#0d47a1] text-white rounded-xl p-8 sm:p-12 text-center flex flex-col items-center gap-4">
-                <div className="text-5xl sm:text-6xl text-white"><MdEmergency className="text-5xl sm:text-6xl text-white" size={76} aria-hidden="true" /></div>
-                <h2 className="text-3xl sm:text-4xl font-extrabold font-display">Atendimento Emergencial 24 Horas</h2>
-                <p className="max-w-2xl text-lg sm:text-xl">Vazamentos, entupimentos ou qualquer problema hidráulico urgente? Nossa equipe está de plantão em Goiânia 24/7 para te atender.</p>
-                <a
-                  href={process.env.NEXT_PUBLIC_EMERGENCY_TEL ?? 'tel:+5562991157746'}
-                  aria-label="Ligar para emergência agora"
-                  className="mt-4 inline-flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-8 bg-white text-[#0d47a1] text-lg font-bold leading-normal tracking-[0.015em] hover:bg-slate-100 transition-colors gap-3"
-                >
-                  <MdCall className="text-[#0d47a1]" size={20} aria-hidden="true" />
-                  <span className="truncate">Ligar Para Emergência Agora</span>
-                </a>
-              </section>
+              {/* Photo 2: Instalação de torneira monocomando */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-2.webp"
+                  alt="Encanador instalando torneira monocomando cromada em bancada de mármore"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Instalação de Torneira Monocomando</span>
+                  <span className="text-sky-400 text-xs font-medium">Fixação e Engates Flexíveis com Teflon</span>
+                </div>
+              </div>
 
-              {/* Nossos Serviços */}
-              <section className="flex flex-col gap-8 items-center">
-                <div className="text-center max-w-2xl">
-                  <h2 className="text-[#0d47a1] dark:text-secondary text-sm font-bold uppercase tracking-wider font-display">Soluções Completas</h2>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold font-display mt-2">Serviços de Encanador em Goiânia</h3>
-                  <p className="text-text-muted-light dark:text-text-muted-dark text-lg mt-4">Além de soluções em vazamentos, oferecemos uma gama completa de serviços hidráulicos para residências e empresas:</p>
+              {/* Photo 3: Colagem de tubulação PVC */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-3.webp"
+                  alt="Encanador colando tubulação de PVC com adesivo Tigre"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Soldagem de Tubulação de PVC</span>
+                  <span className="text-sky-400 text-xs font-medium">Conexão com Adesivo Plástico Tigre</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                  <div className="flex flex-col gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                    <div className="text-[#0d47a1]"><MdWaterDrop className="text-3xl text-[#0d47a1]" size={28} aria-hidden="true" /></div>
-                    <h4 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Soluções em Vazamentos</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Seu vazamento já está à vista? Nós quebramos a parede, corrigimos 100% do problema hidráulico e deixamos o ambiente limpo e restaurado, como se nada tivesse acontecido.</p>
-                  </div>
-                  <div className="flex flex-col gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                    <div className="text-[#0d47a1]"><MdPlumbing className="text-3xl text-[#0d47a1]" size={28} aria-hidden="true" /></div>
-                    <h4 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Desentupimento</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Soluções para desentupir pias, ralos, vasos sanitários, esgotos e colunas com máxima eficiência.</p>
-                  </div>
-                  <div className="flex flex-col gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                    <div className="text-[#0d47a1]"><MdBuild className="text-3xl text-[#0d47a1]" size={28} aria-hidden="true" /></div>
-                    <h4 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Reparos Hidráulicos</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Conserto de torneiras, registros, descargas, sifões e qualquer componente do seu sistema hidráulico.</p>
-                  </div>
-                  <div className="flex flex-col gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                    <div className="text-[#0d47a1]"><MdShower className="text-3xl text-[#0d47a1]" size={28} aria-hidden="true" /></div>
-                    <h4 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Instalações</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Instalação de chuveiros, torneiras, caixas d'água, filtros e montagem de novas redes de água e esgoto.</p>
-                  </div>
-                  <div className="flex flex-col gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                    <div className="text-[#0d47a1]"><MdCleaningServices className="text-3xl text-[#0d47a1]" size={28} aria-hidden="true" /></div>
-                    <h4 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Limpeza de Caixa d'Água</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Higienização e desinfecção de reservatórios de água, garantindo a qualidade da água consumida.</p>
-                  </div>
-                  <div className="flex flex-col gap-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark p-6">
-                    <div className="text-[#0d47a1]"><MdLocalFireDepartment className="text-3xl text-[#0d47a1]" size={28} aria-hidden="true" /></div>
-                    <h4 className="text-text-light dark:text-text-dark text-xl font-bold leading-tight font-display">Hidrantes e Sprinklers</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark text-base font-normal leading-normal">Manutenção e instalação de sistemas de combate a incêndio para condomínios e empresas.</p>
-                  </div>
-                </div>
-              </section>
+              </div>
 
-              <TestimonialsSection />
+              {/* Photo 4: Instalação de torneiras e registros */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-4.webp"
+                  alt="Encanador ajustando torneiras e registros com chave de aperto"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Troca de Torneiras e Registros</span>
+                  <span className="text-sky-400 text-xs font-medium">Ajuste de Registros com Chave de Aperto</span>
+                </div>
+              </div>
 
-              {/* Nosso Processo */}
-              <section className="flex flex-col gap-8 items-center">
-                <div className="text-center max-w-2xl">
-                  <h2 className="text-[#0d47a1] dark:text-secondary text-sm font-bold uppercase tracking-wider font-display">Como Trabalhamos</h2>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold font-display mt-2">Nosso Processo de Atendimento</h3>
-                  <p className="text-text-muted-light dark:text-text-muted-dark text-lg mt-4">Simples, rápido e transparente. Veja como é fácil resolver seu problema hidráulico conosco.</p>
+              {/* Photo 5: Montagem de tubulação PEX */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-5.webp"
+                  alt="Encanador conectando válvulas e tubulações de água sob bancada"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Montagem de Tubulação PEX e Registros</span>
+                  <span className="text-sky-400 text-xs font-medium">Instalação de Válvulas para Água Quente e Fria</span>
                 </div>
-                <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-8">
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <div className="flex items-center justify-center size-16 rounded-full bg-[#0d47a1]/10 dark:bg-secondary/10 text-[#0d47a1] dark:text-secondary text-2xl font-bold">1</div>
-                    <h4 className="font-bold text-xl">Contato Inicial</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark">Você nos liga ou manda uma mensagem descrevendo o problema. Agendamos a visita no melhor horário para você.</p>
-                  </div>
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <div className="flex items-center justify-center size-16 rounded-full bg-[#0d47a1]/10 dark:bg-secondary/10 text-[#0d47a1] dark:text-secondary text-2xl font-bold">2</div>
-                    <h4 className="font-bold text-xl">Visita e Orçamento</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark">Nosso técnico avalia a situação no local e apresenta um orçamento detalhado e sem compromisso.</p>
-                  </div>
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <div className="flex items-center justify-center size-16 rounded-full bg-[#0d47a1]/10 dark:bg-secondary/10 text-[#0d47a1] dark:text-secondary text-2xl font-bold">3</div>
-                    <h4 className="font-bold text-xl">Execução do Serviço</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark">Com sua aprovação, o serviço é realizado com máxima eficiência, limpeza e segurança.</p>
-                  </div>
-                  <div className="flex flex-col items-center text-center gap-3">
-                    <div className="flex items-center justify-center size-16 rounded-full bg-[#0d47a1]/10 dark:bg-secondary/10 text-[#0d47a1] dark:text-secondary text-2xl font-bold">4</div>
-                    <h4 className="font-bold text-xl">Finalização e Garantia</h4>
-                    <p className="text-text-muted-light dark:text-text-muted-dark">Após a conclusão, garantimos que tudo está funcionando perfeitamente e emitimos sua garantia.</p>
-                  </div>
-                </div>
-              </section>
+              </div>
 
-              {/* FAQ */}
-              <section className="w-full max-w-3xl mx-auto flex flex-col gap-8 items-center">
-                <div className="text-center">
-                  <h2 className="text-[#0d47a1] dark:text-secondary text-sm font-bold uppercase tracking-wider font-display">Dúvidas Comuns</h2>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold font-display mt-2">Perguntas Frequentes</h3>
+              {/* Photo 6: Manutenção e limpeza de caixa d'água */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-6.webp"
+                  alt="Higienização e manutenção em caixa d'água residencial"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Limpeza de Caixa d&apos;Água</span>
+                  <span className="text-sky-400 text-xs font-medium">Higienização e Manutenção de Bóia de Entrada</span>
                 </div>
-                <div className="w-full flex flex-col divide-y divide-slate-200 dark:divide-slate-800">
-                  <details className="group py-4" open>
-                    <summary className="flex cursor-pointer items-center justify-between">
-                      <h4 className="text-lg font-medium">Vocês oferecem garantia nos serviços?</h4>
-                      <MdExpandMore className="transition-transform group-open:rotate-180 text-[#0d47a1]" aria-hidden="true" />
-                    </summary>
-                    <p className="mt-2 text-text-muted-light dark:text-text-muted-dark">Sim, todos os nossos serviços possuem garantia de 90 dias, conforme o código de defesa do consumidor. Queremos que você tenha total tranquilidade.</p>
-                  </details>
-                  <details className="group py-4">
-                    <summary className="flex cursor-pointer items-center justify-between">
-                      <h4 className="text-lg font-medium">Quais formas de pagamento vocês aceitam?</h4>
-                      <MdExpandMore className="transition-transform group-open:rotate-180" aria-hidden="true" />
-                    </summary>
-                    <p className="mt-2 text-text-muted-light dark:text-text-muted-dark">Aceitamos dinheiro, PIX, cartões de débito e crédito (parcelamos em até 3x sem juros). Faturamos também para empresas.</p>
-                  </details>
-                  <details className="group py-4">
-                    <summary className="flex cursor-pointer items-center justify-between">
-                      <h4 className="text-lg font-medium">Em quanto tempo vocês chegam para uma emergência?</h4>
-                      <MdExpandMore className="transition-transform group-open:rotate-180" aria-hidden="true" />
-                    </summary>
-                    <p className="mt-2 text-text-muted-light dark:text-text-muted-dark">Para chamados de emergência em Goiânia, nosso tempo médio de chegada é de 40 a 60 minutos, dependendo do trânsito e da sua localização.</p>
-                  </details>
-                  <details className="group py-4">
-                    <summary className="flex cursor-pointer items-center justify-between">
-                      <h4 className="text-lg font-medium">O orçamento para visita é cobrado?</h4>
-                      <MdExpandMore className="transition-transform group-open:rotate-180" aria-hidden="true" />
-                    </summary>
-                    <p className="mt-2 text-text-muted-light dark:text-text-muted-dark">Não. A visita e o orçamento são totalmente gratuitos e sem compromisso dentro do perímetro urbano de Goiânia.</p>
-                  </details>
-                </div>
-              </section>
+              </div>
 
-              {/* Contato Final removido - formulário movido fora das páginas de serviço */}
+              {/* Photo 7: Instalação de torneira e cuba de cozinha */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-7.webp"
+                  alt="Encanador instalando torneira de cozinha e vedações de cuba"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Instalação de Torneira de Cozinha</span>
+                  <span className="text-sky-400 text-xs font-medium">Montagem de Cuba, Torneira e Vedações</span>
+                </div>
+              </div>
+
+              {/* Photo 8: Montagem de tubulação residencial */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-8.webp"
+                  alt="Encanador montando ramal residencial de água"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Montagem de Redes Hidráulicas</span>
+                  <span className="text-sky-400 text-xs font-medium">Instalação de Canos de Água Residencial</span>
+                </div>
+              </div>
+
+              {/* Photo 9: Instalação de louças sanitárias */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-encanador-9.webp"
+                  alt="Encanador realizando conexão hidráulica de bancada e torneira"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Instalação de Vaso Sanitário e Louças</span>
+                  <span className="text-sky-400 text-xs font-medium">Fixação de Louças e Conexão de Engates</span>
+                </div>
+              </div>
+
             </div>
-          </main>
 
-        </div>
-        <FloatingWhatsappButton message={`Olá, gostaria de contratar seus serviços de Encanador.`} />
+            {/* Gallery Button */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center justify-center rounded-xl px-8 py-3.5 border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wider transition-all"
+            >
+              SOLICITAR ORÇAMENTO NO WHATSAPP
+            </a>
+
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 3. NOSSOS SERVIÇOS SECTION                           */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/60" id="servicos">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            {/* Section Tagline & Title */}
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-sky-500 mb-2">
+              NOSSOS SERVIÇOS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-12">
+              Soluções completas em instalações hidráulicas
+            </h2>
+
+            {/* 6 Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              
+              {/* Card 1 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-sky-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdBuild size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Troca de Torneiras e Registros</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Instalação e conserto de torneiras, registros de gaveta e pressão, misturadores e torneiras monocomando.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-sky-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdPlumbing size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Sifões, Engates e Válvulas</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Substituição de sifões de pia, engates flexíveis em inox, válvulas de escoamento e vedações sanitárias.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-sky-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdShower size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Válvula Hydra e Caixas Acopladas</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Manutenção de mecanismo de descarga, substituição de reparos Hydra e vedação de vasos sanitários.
+                </p>
+              </div>
+
+              {/* Card 4 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-sky-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdCleaningServices size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Limpeza de Caixas d&apos;Água</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Higienização técnica e sanificação de reservatórios de água potável, mantendo a água pura para sua família.
+                </p>
+              </div>
+
+              {/* Card 5 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-sky-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdHome size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Tubulações em PVC, PEX e PPR</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Montagem, ampliação e reforma de tubulações de água fria e água quente residencial e comercial.
+                </p>
+              </div>
+
+              {/* Card 6 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-sky-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-sky-50 dark:bg-sky-950/50 text-sky-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdInvertColors size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Chuveiros, Filtros e Purificadores</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Instalação hidráulica de filtros de água de entrada, purificadores de cozinha, chuveiros e duchas.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Bottom Button */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center justify-center rounded-xl px-8 py-3.5 border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wider transition-all"
+            >
+              SOLICITAR ORÇAMENTO GRATUITO
+            </a>
+
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 4. POR QUE ESCOLHER NOSSOS SERVIÇOS?                 */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-sky-500 mb-2">
+              POR QUE ESCOLHER NOSSOS SERVIÇOS?
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-16">
+              Compromisso com agilidade, limpeza e garantia
+            </h2>
+
+            {/* 5 Columns Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+              
+              {/* Feature 1 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdPerson size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Técnicos Experientes</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Encanadores capacitados para executar o serviço com perfeição.
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdShield size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Limpeza do Ambiente</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Trabalhamos com cuidado e deixamos seu espaço limpo após a conclusão.
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdSpeed size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Atendimento Rápido</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Agilidade no agendamento e pontualidade no atendimento.
+                </p>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdAttachMoney size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Preço Justo</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Orçamento sem taxa oculta, explicado de forma clara antes do serviço.
+                </p>
+              </div>
+
+              {/* Feature 5 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdWorkspacePremium size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Garantia Total</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Garantia comprovada em todos os consertos e instalações realizadas.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 5. DEPOIMENTOS                                       */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-sky-500 mb-2">
+              DEPOIMENTOS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-12">
+              O que nossos clientes dizem em Goiânia
+            </h2>
+
+            {/* 3 Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              
+              {/* Card 1 */}
+              <div className="flex flex-col justify-between p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
+                <div>
+                  <div className="flex gap-1 text-amber-400 mb-4">
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 leading-relaxed">
+                    &quot;Excelente atendimento! O encanador trocou as torneiras da minha cozinha e ajustou o sifão com extrema precisão. Recomendo muito!&quot;
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+                    alt="Marcos A."
+                    className="w-11 h-11 rounded-full object-cover"
+                  />
+                  <div>
+                    <span className="block font-bold text-sm text-slate-900 dark:text-white">Marcos A.</span>
+                    <span className="block text-xs text-slate-500 dark:text-slate-400">Setor Oeste - Goiânia</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="flex flex-col justify-between p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
+                <div>
+                  <div className="flex gap-1 text-amber-400 mb-4">
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 leading-relaxed">
+                    &quot;Serviço impecável na instalação de registros e tubulações da minha empresa. Chegaram no horário combinado e deixaram tudo limpo.&quot;
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+                    alt="Fernando S."
+                    className="w-11 h-11 rounded-full object-cover"
+                  />
+                  <div>
+                    <span className="block font-bold text-sm text-slate-900 dark:text-white">Fernando S.</span>
+                    <span className="block text-xs text-slate-500 dark:text-slate-400">Setor Bueno - Goiânia</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="flex flex-col justify-between p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
+                <div>
+                  <div className="flex gap-1 text-amber-400 mb-4">
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 leading-relaxed">
+                    &quot;Fizeram a limpeza da minha caixa d&apos;água e a troca do reparo da caixa acoplada do banheiro. Deixaram tudo funcionando 100%.&quot;
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
+                    alt="Camila R."
+                    className="w-11 h-11 rounded-full object-cover"
+                  />
+                  <div>
+                    <span className="block font-bold text-sm text-slate-900 dark:text-white">Camila R.</span>
+                    <span className="block text-xs text-slate-500 dark:text-slate-400">Jardim Goiás - Goiânia</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex items-center justify-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-sky-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 6. FINAL CTA BANNER (DARK CARD)                      */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-12 md:py-20 bg-white dark:bg-slate-950" id="contato">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            
+            <div className="bg-[#0B132B] rounded-3xl p-8 sm:p-12 md:p-16 text-white shadow-2xl relative overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                {/* Left CTA Text & Actions */}
+                <div className="lg:col-span-7 text-left">
+                  
+                  {/* Sky Water Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center mb-6">
+                    <MdWaterDrop size={28} />
+                  </div>
+
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight mb-3">
+                    Precisando de encanador em Goiânia?
+                  </h2>
+
+                  <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-xl">
+                    Fale agora mesmo com nossa equipe e solicite seu orçamento gratuito!
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="Chamar no WhatsApp"
+                      className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-white hover:bg-slate-100 text-[#0B132B] text-base font-bold transition-all shadow-md gap-2.5"
+                    >
+                      <FaWhatsapp size={22} className="text-emerald-600" />
+                      <span>CHAMAR NO WHATSAPP</span>
+                    </a>
+
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="Ligar Agora"
+                      className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-sky-500 hover:bg-sky-400 text-white text-base font-bold transition-all shadow-md gap-2.5"
+                    >
+                      <MdCall size={22} />
+                      <span>LIGAR AGORA</span>
+                    </a>
+                  </div>
+
+                </div>
+
+                {/* Right CTA Image */}
+                <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                  <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border border-slate-700/60">
+                    <img
+                      src="/gallery/encanador-hero.webp"
+                      alt="Encanador em atendimento rápido em Goiânia"
+                      className="w-full h-[260px] sm:h-[320px] object-cover"
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
       </div>
+
+      <FloatingWhatsappButton message={whatsappMsg} />
     </main>
   )
 }
