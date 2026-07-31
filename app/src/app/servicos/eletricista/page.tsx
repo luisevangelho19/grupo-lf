@@ -1,10 +1,26 @@
 import React from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
-import { MdEmergency, MdWorkspacePremium, MdThumbUp, MdShower, MdElectricalServices, MdPower, MdBuild, MdCall, MdEvent, MdConstruction, MdTaskAlt, MdExpandMore } from 'react-icons/md'
+import { 
+  MdCall, 
+  MdCheckCircle, 
+  MdFlashOn, 
+  MdAccessTime, 
+  MdLocationOn,
+  MdHome,
+  MdBuild,
+  MdPower,
+  MdLightbulb,
+  MdElectricalServices,
+  MdWarning,
+  MdPerson,
+  MdShield,
+  MdSpeed,
+  MdAttachMoney,
+  MdWorkspacePremium,
+  MdStar
+} from 'react-icons/md'
 import ServiceJsonLd from '../../../components/ServiceJsonLd'
 import FloatingWhatsappButton from '~/components/FloatingWhatsappButton'
-import TestimonialsSection from '~/components/TestimonialsSection'
-
 import { getServiceBySlug } from '~/lib/content'
 
 export async function generateMetadata() {
@@ -13,16 +29,16 @@ export async function generateMetadata() {
   const title = fm.title ?? 'Eletricista Profissional — Grupo LF'
   const description = fm.description ?? 'Eletricista em Goiânia — instalação, manutenção e serviços elétricos com segurança e qualidade.'
 
-    const _base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://servicoslf.com.br'
-    return {
+  const _base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://servicoslf.com.br'
+  return {
+    title,
+    description,
+    openGraph: {
       title,
       description,
-      openGraph: {
-        title,
-        description,
-        url: `${_base}/servicos/eletricista`,
-        images: [{ url: `${_base}/services/eletricista.jpg`, width: 1200, height: 630 }],
-      },
+      url: `${_base}/servicos/eletricista`,
+      images: [{ url: `${_base}/services/eletricista.jpg`, width: 1200, height: 630 }],
+    },
     alternates: { canonical: 'https://servicoslf.com.br/servicos/eletricista' },
   }
 }
@@ -30,215 +46,647 @@ export async function generateMetadata() {
 export default async function Eletricista() {
   const data = await getServiceBySlug('eletricista')
   const fm = data?.frontmatter ?? {}
+
+  const whatsappNumber = process.env.NEXT_PUBLIC_SITE_WHATSAPP_NUMBER ?? '5562991157746'
+  const whatsappMsg = 'Olá, preciso de atendimento elétrico em Goiânia.'
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMsg)}`
+
   return (
-    <main className="flex-1 bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body">
-      <div className="relative flex h-auto w-full flex-col group/design-root overflow-x-hidden">
-        <ServiceJsonLd
-          name={fm.title ?? 'Eletricista Profissional'}
-          description={fm.description}
-          provider={{ name: 'Grupo LF', telephone: '(62) 99115-7746', url: 'https://servicoslf.com.br', email: 'contato@servicoslf.com.br' }}
-          serviceType={fm.slug ?? 'eletricista'}
-          areaServed={fm.areaServed ?? 'Goiânia, GO'}
-          priceRange={fm.priceRange}
-          image={fm.image ?? '/services/eletricista.jpg'}
-        />
-        {/* Layout container to match Gesseiro structure */}
-        <div className="layout-container flex h-full grow flex-col">
-        {/* Hero Section (match Gesseiro layout) */}
-        <div className="relative">
-        <div className="absolute inset-0 bg-linear-to-br from-[#F59E0B] via-[#C87A03] to-[#8a4f00] z-0" aria-hidden="true" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex min-h-[60vh] md:min-h-[70vh] flex-col gap-6 items-center justify-center text-center py-20">
-            <div className="flex flex-col gap-4">
-              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight font-display">{fm.title ?? 'Eletricista Profissional em Goiânia'}</h1>
-              <h2 className="text-white/90 text-lg md:text-xl font-normal leading-normal max-w-2xl mx-auto">{fm.description ?? 'Soluções elétricas rápidas e seguras para sua casa ou empresa.'}</h2>
-            </div>
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
-              <a
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_SITE_WHATSAPP_NUMBER ?? '5562991157746'}?text=${encodeURIComponent('Olá, preciso de atendimento elétrico em Goiânia.')}`}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Chamar Grupo LF no WhatsApp (abrir em nova aba)"
-                className="btn-whatsapp"
-              >
-                <FaWhatsapp size={20} className="text-white" aria-hidden="true" />
-                <span className="truncate">Chamar no WhatsApp</span>
-              </a>
-              <a
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_SITE_WHATSAPP_NUMBER ?? '5562991157746'}?text=${encodeURIComponent('Olá, gostaria de solicitar um orçamento para serviços elétricos em Goiânia.')}`}
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Pedir orçamento gratuito pelo WhatsApp (abre em nova aba)"
-                className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white/10 border border-white/50 text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-white/20 transition-colors"
-              >
-                <span className="truncate">Solicitar Orçamento</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        </div>
+    <main className="flex-1 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-body">
+      <ServiceJsonLd
+        name={fm.title ?? 'Eletricista Profissional'}
+        description={fm.description}
+        provider={{ name: 'Grupo LF', telephone: '(62) 99115-7746', url: 'https://servicoslf.com.br', email: 'contato@servicoslf.com.br' }}
+        serviceType={fm.slug ?? 'eletricista'}
+        areaServed={fm.areaServed ?? 'Goiânia, GO'}
+        priceRange={fm.priceRange}
+        image={fm.image ?? '/services/eletricista.jpg'}
+      />
 
-        {/* The rest of the page content lives inside the same layout container */}
+      <div className="w-full">
+        {/* ---------------------------------------------------- */}
+        {/* 1. HERO SECTION                                      */}
+        {/* ---------------------------------------------------- */}
+        <section className="relative w-full bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-slate-800 py-12 md:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              
+              {/* Left Column (Text & CTAs) */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left">
+                
+                {/* High Contrast Badge Tag */}
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-[#0B132B] text-amber-400 font-black text-xs sm:text-sm uppercase tracking-widest border border-amber-500/40 shadow-md mb-5">
+                  <MdFlashOn size={20} className="text-amber-400" />
+                  <span>ELETRICISTA EM GOIÂNIA</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span className="text-slate-300 font-bold">24 HORAS</span>
+                </div>
 
-      {/* Why Us Section */}
-      <section className="w-full flex justify-center px-4 py-12 md:py-20 bg-background-light-section dark:bg-background-dark-section">
-        <div className="w-full max-w-6xl">
-          <h2 className="text-3xl font-bold tracking-tight text-center mb-10">Por que nos escolher?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex flex-1 flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark p-6 text-center items-center">
-              <MdEmergency aria-hidden="true" className="text-[#F59E0B] text-4xl mb-2" size={36} />
-              <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-bold">Atendimento 24h</h3>
-                <p className="text-sm leading-normal text-text-muted-light dark:text-text-muted-dark">Conte conosco a qualquer hora do dia para resolver problemas elétricos urgentes em Goiânia.</p>
+                {/* Main H1 Title */}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-950 dark:text-white leading-[1.1] tracking-tight mb-5">
+                  <span className="block text-amber-500 dark:text-amber-400 text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight mb-2">
+                    Eletricista em Goiânia
+                  </span>
+                  Serviços Elétricos <span className="bg-amber-500 text-slate-950 px-3 py-1 rounded-xl inline-block mt-1.5 font-extrabold shadow-sm">Residenciais e Comerciais</span>
+                </h1>
+
+                {/* Subtitle Paragraph */}
+                <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-8 max-w-2xl font-medium">
+                  Soluções elétricas completas para casas, apartamentos, lojas, escritórios e condomínios. Instalação, manutenção, quadro de disjuntores e reparos com total segurança e rapidez em Goiânia e região.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Chamar no WhatsApp"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-[#0B132B] hover:bg-[#1E293B] text-white text-base font-bold transition-all shadow-md hover:shadow-lg gap-2.5"
+                  >
+                    <FaWhatsapp size={22} className="text-emerald-400" />
+                    <span>CHAMAR NO WHATSAPP</span>
+                  </a>
+
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Ligar Agora"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-white dark:bg-slate-900 border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white text-base font-bold transition-all gap-2.5"
+                  >
+                    <MdCall size={22} className="text-amber-500" />
+                    <span>LIGAR AGORA</span>
+                  </a>
+                </div>
+
+                {/* 4 Feature Badges */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800 w-full">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 shrink-0">
+                      <MdCheckCircle size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Segurança em primeiro lugar</span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 shrink-0">
+                      <MdFlashOn size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Serviços com qualidade</span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 shrink-0">
+                      <MdAccessTime size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Atendimento 24 horas</span>
+                  </div>
+
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 shrink-0">
+                      <MdLocationOn size={18} />
+                    </div>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 leading-tight">Goiânia e Região</span>
+                  </div>
+                </div>
+
               </div>
-            </div>
-            <div className="flex flex-1 flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark p-6 text-center items-center">
-              <MdWorkspacePremium aria-hidden="true" className="text-[#F59E0B] text-4xl mb-2" size={36} />
-              <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-bold">Técnicos Certificados</h3>
-                <p className="text-sm leading-normal text-text-muted-light dark:text-text-muted-dark">Nossa equipe é qualificada e segue rigorosamente todas as normas de segurança NR-10.</p>
+
+              {/* Right Column (Hero Image with Overlay Badge) */}
+              <div className="lg:col-span-5 relative flex justify-center">
+                <div className="relative w-full max-w-md lg:max-w-none">
+                  
+                  {/* Hero Photo */}
+                  <img
+                    src="/gallery/eletricista-hero.webp"
+                    alt="Eletricista profissional executando serviço elétrico em Goiânia"
+                    className="w-full h-[400px] sm:h-[480px] object-cover rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800"
+                  />
+
+                  {/* Floating Overlay Badge */}
+                  <div className="absolute -bottom-6 -right-2 sm:bottom-6 sm:-left-6 bg-[#0B132B] text-white p-4 sm:p-5 rounded-2xl shadow-2xl border border-slate-700/80 flex items-center gap-3.5 max-w-[280px]">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-amber-500 text-slate-950 font-black shrink-0">
+                      <MdFlashOn size={26} />
+                    </div>
+                    <div className="text-left">
+                      <span className="block text-xs font-black uppercase tracking-wider text-amber-400">Garantia LF</span>
+                      <span className="block text-xs sm:text-sm font-extrabold leading-snug">ATENDIMENTO RÁPIDO E CONFIÁVEL!</span>
+                    </div>
+                  </div>
+
+                </div>
               </div>
+
             </div>
-            <div className="flex flex-1 flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark p-6 text-center items-center">
-              <MdThumbUp aria-hidden="true" className="text-[#F59E0B] text-4xl mb-2" size={36} />
-              <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-bold">Garantia de Serviço</h3>
-                <p className="text-sm leading-normal text-text-muted-light dark:text-text-muted-dark">Oferecemos garantia completa em todos os serviços prestados, assegurando sua total satisfação.</p>
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 2. GALERIA DE SERVIÇOS (FOTOS REALISTAS EM AÇÃO 1:1)   */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-amber-500 mb-2">
+              GALERIA DE SERVIÇOS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
+              Confira alguns dos nossos trabalhos
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-12">
+              Fotos reais do nosso atendimento em Goiânia: instalações, reparos de disjuntores, fiação e manutenção elétrica.
+            </p>
+
+            {/* 3x3 Grid (9 Realistic Brazilian Electrician Action Photos 1:1) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              
+              {/* Photo 1: Troca de disjuntor no quadro elétrico */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-1.webp"
+                  alt="Eletricista trocando disjuntor em quadro elétrico residencial no Brasil"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Troca e Manutenção de Disjuntor</span>
+                  <span className="text-amber-400 text-xs font-medium">Quadro de Distribuição Residencial</span>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Our Services Section */}
-      <section className="w-full flex justify-center px-4 py-12 md:py-20" id="servicos">
-        <div className="w-full max-w-6xl">
-          <h2 className="text-3xl font-bold tracking-tight text-center mb-10">Nossos Serviços</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="flex flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-              <MdShower aria-hidden="true" className="text-[#F59E0B] text-3xl" size={28} />
-              <h3 className="text-base font-bold">Instalação de Chuveiro</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Instalação e troca de chuveiros elétricos com segurança.</p>
-            </div>
-            <div className="flex flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-              <MdElectricalServices aria-hidden="true" className="text-[#F59E0B] text-3xl" size={28} />
-              <h3 className="text-base font-bold">Troca de Fiação</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Modernização da fiação antiga para evitar acidentes.</p>
-            </div>
-            <div className="flex flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-              <MdPower aria-hidden="true" className="text-[#F59E0B] text-3xl" size={28} />
-              <h3 className="text-base font-bold">Instalação de Tomadas</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Novos pontos de tomada e interruptores conforme sua necessidade.</p>
-            </div>
-            <div className="flex flex-col gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-              <MdBuild aria-hidden="true" className="text-[#F59E0B] text-3xl" size={28} />
-              <h3 className="text-base font-bold">Manutenção Preventiva</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Verificação completa do sistema elétrico para garantir segurança.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+              {/* Photo 2: Instalação de tomada padrão ABNT 3 pinos */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-2.webp"
+                  alt="Eletricista instalando tomada de parede padrão ABNT 3 pinos"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Instalação de Tomada NBR 14136</span>
+                  <span className="text-amber-400 text-xs font-medium">Padrão Novo ABNT de 3 Pinos</span>
+                </div>
+              </div>
 
-      {/* Process Section */}
-      <section className="w-full flex justify-center px-4 py-12 md:py-20 bg-background-light-section dark:bg-background-dark-section">
-        <div className="w-full max-w-6xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Como Funciona Nosso Atendimento</h2>
-          <p className="max-w-2xl mx-auto text-text-muted-light dark:text-text-muted-dark mb-12">Nosso processo é simples, rápido e transparente, pensado para resolver seu problema com eficiência.</p>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center size-16 rounded-full bg-[#F59E0B] text-text-light mb-4"><MdCall aria-hidden="true" className="text-4xl" size={36} /></div>
-              <h3 className="font-bold mb-2">1. Contato e Orçamento</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Você entra em contato e descreve o problema. Enviamos um orçamento rápido e sem compromisso.</p>
+              {/* Photo 3: Reparo em fiação elétrica e fita isolante */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-3.webp"
+                  alt="Eletricista realizando reparo de fiação em caixa de passagem"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Reparo de Fiação e Curto-Circuito</span>
+                  <span className="text-amber-400 text-xs font-medium">Isolamento e Substituição de Cabos</span>
+                </div>
+              </div>
+
+              {/* Photo 4: Instalação de iluminação LED em gesso */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-4.webp"
+                  alt="Eletricista instalando painel LED embutido em forro de gesso"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Instalação de Iluminação em LED</span>
+                  <span className="text-amber-400 text-xs font-medium">Spots e Painéis Embutidos em Gesso</span>
+                </div>
+              </div>
+
+              {/* Photo 5: Diagnóstico e medição com multímetro */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-5.webp"
+                  alt="Eletricista medindo voltagem com multímetro digital em quadro de força"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Diagnóstico com Multímetro</span>
+                  <span className="text-amber-400 text-xs font-medium">Medição de Voltagem e Carga</span>
+                </div>
+              </div>
+
+              {/* Photo 6: Instalação de interruptores de luz */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-6.webp"
+                  alt="Eletricista fixando espelho de interruptor de luz em parede"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Troca de Interruptores e Módulos</span>
+                  <span className="text-amber-400 text-xs font-medium">Acabamento e Estética Residencial</span>
+                </div>
+              </div>
+
+              {/* Photo 7: Conexão de painel elétrico comercial */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-7.webp"
+                  alt="Eletricista apertando cabos de alta amperagem em quadro elétrico comercial"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Entrada de Energia e Painel Comercial</span>
+                  <span className="text-amber-400 text-xs font-medium">Manutenção de Alimentação de Alta Carga</span>
+                </div>
+              </div>
+
+              {/* Photo 8: Instalação de chuveiro elétrico */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-8.webp"
+                  alt="Eletricista conectando fios de chuveiro elétrico residencial"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Instalação de Chuveiro Elétrico</span>
+                  <span className="text-amber-400 text-xs font-medium">Cabeamento de 6mm² e Conector Porcelana</span>
+                </div>
+              </div>
+
+              {/* Photo 9: Instalação de refletor LED externo */}
+              <div className="relative aspect-square rounded-2xl overflow-hidden shadow-sm group border border-slate-200 dark:border-slate-800">
+                <img
+                  src="/gallery/galeria-9.webp"
+                  alt="Eletricista instalando refletor de LED em fachada residencial"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end text-left">
+                  <span className="text-white font-bold text-sm">Iluminação Externa e Refletores</span>
+                  <span className="text-amber-400 text-xs font-medium">Instalação de Refletor LED em Fachada</span>
+                </div>
+              </div>
+
             </div>
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center size-16 rounded-full bg-[#F59E0B] text-text-light mb-4"><MdEvent aria-hidden="true" className="text-4xl" size={36} /></div>
-              <h3 className="font-bold mb-2">2. Agendamento</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Com o orçamento aprovado, agendamos a visita técnica no melhor horário para você.</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center size-16 rounded-full bg-[#F59E0B] text-text-light mb-4"><MdConstruction aria-hidden="true" className="text-4xl" size={36} /></div>
-              <h3 className="font-bold mb-2">3. Execução Segura</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Nossos técnicos realizam o serviço com equipamentos adequados e seguindo as normas de segurança.</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center size-16 rounded-full bg-[#F59E0B] text-text-light mb-4"><MdTaskAlt aria-hidden="true" className="text-4xl" size={36} /></div>
-              <h3 className="font-bold mb-2">4. Revisão e Garantia</h3>
-              <p className="text-sm text-text-muted-light dark:text-text-muted-dark">Após a conclusão, revisamos tudo com você e entregamos o certificado de garantia do serviço.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Gallery Section */}
-      <section className="w-full flex justify-center px-4 py-12 md:py-20">
-        <div className="w-full max-w-6xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight mb-10">Trabalhos Realizados em Goiânia</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <img className="rounded-lg object-cover aspect-square hover:opacity-90 transition-opacity cursor-pointer" alt="Eletricista profissional em Goiânia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOwG-47CI1csgG24vpUdmdPia341IOYQheqz-BMy6T8VDKJDIcLb9BIs37sNJrGci9aB4a8IabEVQZr5jEDGdXE8xNqb91qDZBQL-eSpAKTHYoSgQgapt3GTCk4NED6AQoQj3lBaJlDUJpS_IpFXcB6uSZ5iiGRW6LDE36M7IiwwDSzwic8Mnzs5CyYsc8f5djtk2gzaOfhyee2tp4vlpUPilbEL99S722soXw7sGgjvLV5BlAbprzvwOuch9tqo19smTv9FVEqw" />
-            <img className="rounded-lg object-cover aspect-square hover:opacity-90 transition-opacity cursor-pointer" alt="Eletricista profissional em Goiânia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4HC6N2eoOn5FT1TtZ2WbLyJ0QQmbgyobo-Dpu1TKC2XBIM2Hg59DWhhbiBhFQ7bwtHwQVlki5UwOqaFNPL-FI3jIVg5U5jfeCW7V6IK6fJKCqTbzRkVFUaCbqllHGOpJJvleMxTQLnrVZr19C0esGf_mOXEwj3pvxoHjOJRENXLNiw1iiRIIJDGzs44jzcLsAa_UyM9LJtE_sTclRddzJm_Gkewl1QGRqxEod2rMb_4Ov7h-MBaNo-haDs-BiT07GiaVco_7SAw" />
-            <img className="rounded-lg object-cover aspect-square hover:opacity-90 transition-opacity cursor-pointer" alt="Manutenção em painel elétrico de um comércio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0Jagyc8UoAYcOumNhaTvDQ0M_BWo3HFbkEUWOonK1rF5U9PL2Bl_ft-UyhB5ATXd-bc3fVf8CgHR4rAb3L7oSlpEKB1IOWsgH8HcBDEJXr-RLItNatQPcRb3GGpVFYHDuX7uzJLRnqjp2D4K5YRaR_9qO-HBtWzGW_PObr1xMx00D417FIbuKrdHS3KPg24MhtYwtPOepjQF8XkZthF0kiiNq5YR7LA9BoDHK33vf5vLBfFvpbZ8XL37H819EZwljlN1FM2rimA" />
-            <img className="rounded-lg object-cover aspect-square hover:opacity-90 transition-opacity cursor-pointer" alt="Instalação de novas tomadas em uma parede." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIEtSZFru1x5SEhJ_ovQFKT45Bd8Xgsb8V8Gwa7Mcs-USLXmMRYVbI0s3GMRp5pBzIkFi221lOfM9xja-Inar2b0GKmjnHt2hLr8KGUDb2Vp9LjfEMZU5bJvA6STovfWNmBAbHgAjgC6c3h53rSJ8bGpk231sYecSTLkw7Yv8gsWjkSzSakLSa8y-EnoMyxdrhDSGcBixY5wuXRgdg9Z8QFU-w3lt4FhE1cAVQRpLFEcYVxbFCNSxP9FgM130RDzPih6F94iDpgw" />
-            <img className="rounded-lg object-cover aspect-square hover:opacity-90 transition-opacity cursor-pointer" alt="Troca de fiação elétrica antiga por nova." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgXjIJm0FkHMep084r8zZwbxroiE1r79Orp_IGB34L_5mvBu_Ue_Hb7gOxBhHvY2Q4bR3FYWr75f7lQZFpR_H60mjyd-xlg9paIXto2gZ1gBBmLQ0H7aR6bPJubNJX61TqoGHk7ZJ7EgXM56TfL0Crm0aD7QPhK8v0PxsKB8WJ_0qWAbC7VS8Sdt3d0la8Lr7VlnhrPZXVX0NxUgMZvODk44b4KVvlALiBjgYBkS34-wo8_JP5wEzdXCXrFUqYgNLaMG9NZdMLaw" />
-            <img className="rounded-lg object-cover aspect-square hover:opacity-90 transition-opacity cursor-pointer" alt="Detalhe de um eletricista conectando fios em um disjuntor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvNFg3Xf7_eJLJP-EA51r0qaZurScLcm41UiL-UUXN5ETc-Cnnfj0wwdq35nSVAW8EOXVGbXAfZrIqXIeFmOhoDZC1l5mO_vsii87io53_YqLIb3VOyRmbOiP1BdSgCpoNVg0E4k348bGMYogCKn_ZFXCxH8mwH0AwLkH5lWkExy46UThZr5yh4dghbuO1pEwQgCbRgOW6mUYDiCdYs1AkWis81lCKVX8N-O_Ug_3GxVeUdb0_vAhKrwNuaCrkBY1SpZDtfn42Bg" />
-          </div>
-        </div>
-      </section>
-
-      <TestimonialsSection />
-
-      {/* FAQ Section */}
-      <section className="w-full flex justify-center px-4 py-12 md:py-20">
-        <div className="w-full max-w-4xl">
-          <h2 className="text-3xl font-bold tracking-tight text-center mb-10">Perguntas Frequentes</h2>
-          <div className="space-y-4">
-            <details className="group rounded-lg bg-background-light-section dark:bg-background-dark-section p-4 cursor-pointer">
-              <summary className="flex items-center justify-between font-medium">Vocês atendem emergências 24 horas? <MdExpandMore aria-hidden="true" className="transition-transform group-open:rotate-180" /></summary>
-              <p className="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">Sim! Nossa equipe está disponível 24 horas por dia, 7 dias por semana, para atender chamados de emergência elétrica em toda a região de Goiânia.</p>
-            </details>
-            <details className="group rounded-lg bg-background-light-section dark:bg-background-dark-section p-4 cursor-pointer">
-              <summary className="flex items-center justify-between font-medium">Qual a garantia do serviço prestado?<MdExpandMore aria-hidden="true" className="transition-transform group-open:rotate-180" /></summary>
-              <p className="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">Oferecemos uma garantia padrão de 90 dias para todos os serviços de mão de obra, conforme o Código de Defesa do Consumidor, e a garantia do fabricante para as peças utilizadas.</p>
-            </details>
-            <details className="group rounded-lg bg-background-light-section dark:bg-background-dark-section p-4 cursor-pointer">
-              <summary className="flex items-center justify-between font-medium">Quais formas de pagamento vocês aceitam?<MdExpandMore aria-hidden="true" className="transition-transform group-open:rotate-180" /></summary>
-              <p className="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">Aceitamos diversas formas de pagamento para sua conveniência, incluindo PIX, cartões de débito, crédito (parcelado) e transferência bancária.</p>
-            </details>
-            <details className="group rounded-lg bg-background-light-section dark:bg-background-dark-section p-4 cursor-pointer">
-              <summary className="flex items-center justify-between font-medium">O orçamento tem algum custo?<MdExpandMore aria-hidden="true" className="transition-transform group-open:rotate-180" /></summary>
-              <p className="mt-2 text-sm text-text-muted-light dark:text-text-muted-dark">Não, nosso orçamento é totalmente gratuito e sem compromisso. Entre em contato, descreva sua necessidade e forneceremos uma estimativa de valor.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-        {/* JSON-LD do serviço (moved to top of container) */}
-        </div>
-
-        <FloatingWhatsappButton message={`Olá, gostaria de contratar seus serviços de ${fm.title ?? 'Eletricista'}.`} />
-      </div>
-
-      {/* Final CTA & Contact Section */}
-      <section className="w-full flex justify-center px-4 py-12 md:py-20 bg-[#F59E0B]" id="contato">
-        <div className="w-full max-w-6xl text-center text-white">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Pronto para resolver seu problema elétrico?</h2>
-          <p className="max-w-2xl mx-auto mb-8">Entre em contato agora mesmo e solicite um orçamento gratuito. Nossa equipe está pronta para te atender!</p>
-            <div className="flex justify-center flex-wrap gap-4">
-              <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_SITE_WHATSAPP_NUMBER ?? '5562991157746'}`}
+            {/* Gallery Button */}
+            <a
+              href={whatsappUrl}
               target="_blank"
               rel="noreferrer noopener"
-              aria-label="Chamar Grupo LF no WhatsApp (abrir em nova aba)"
-              className="btn-whatsapp"
+              className="inline-flex items-center justify-center rounded-xl px-8 py-3.5 border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wider transition-all"
             >
-              <FaWhatsapp aria-hidden="true" size={20} className="mr-2" />
-              <span className="truncate">Chamar no WhatsApp</span>
+              SOLICITAR ORÇAMENTO NO WHATSAPP
             </a>
-            <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-background-light/90 dark:bg-background-dark/90 text-black dark:text-text-dark text-base font-bold leading-normal tracking-[0.015em] hover:bg-background-light dark:hover:bg-background-dark transition-colors">
-              <span className="truncate">Ligar Agora: (62) 99115-7746</span>
-            </button>
+
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 3. NOSSOS SERVIÇOS SECTION                           */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/60" id="servicos">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            {/* Section Tagline & Title */}
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-amber-500 mb-2">
+              NOSSOS SERVIÇOS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-12">
+              Soluções completas em serviços elétricos
+            </h2>
+
+            {/* 6 Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              
+              {/* Card 1 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-amber-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdHome size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Instalações Elétricas</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Instalações elétricas residenciais, comerciais e industriais com total segurança, padrão técnico e qualidade.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-amber-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdBuild size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Manutenção Elétrica</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Manutenção preventiva e corretiva para evitar sobrecargas, panes e garantir o bom funcionamento do seu imóvel.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-amber-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdPower size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Troca de Tomadas e Interruptores</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Substituição de tomadas antigas, interruptores e espelhos com segurança técnica e acabamento impecável.
+                </p>
+              </div>
+
+              {/* Card 4 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-amber-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdLightbulb size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Iluminação em LED</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Projetos e instalações de iluminação moderna em LED para máxima economia de energia e valorização dos ambientes.
+                </p>
+              </div>
+
+              {/* Card 5 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-amber-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdElectricalServices size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Disjuntor e Quadro de Força</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Instalação e troca de disjuntores, quadros de distribuição de energia e reorganização de padrões de entrada.
+                </p>
+              </div>
+
+              {/* Card 6 */}
+              <div className="flex flex-col text-left p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-amber-500/50 transition-all group">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 dark:bg-amber-950/50 text-amber-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MdWarning size={30} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Curto-Circuito e Falhas</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Diagnóstico rápido e correção definitiva de curtos-circuitos, quedas de energia e fuga de corrente.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Bottom Button */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center justify-center rounded-xl px-8 py-3.5 border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-white font-bold text-sm uppercase tracking-wider transition-all"
+            >
+              VER TODOS OS SERVIÇOS
+            </a>
+
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 4. POR QUE ESCOLHER NOSSOS SERVIÇOS?                 */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-amber-500 mb-2">
+              POR QUE ESCOLHER NOSSOS SERVIÇOS?
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-16">
+              Compromisso com qualidade e segurança
+            </h2>
+
+            {/* 5 Columns Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+              
+              {/* Feature 1 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdPerson size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Profissionais Qualificados</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Equipe altamente experiente e em constante treinamento técnico.
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdShield size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Segurança Garantida</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Trabalhamos seguindo rigorosamente as normas técnicas para sua proteção.
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdSpeed size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Atendimento Rápido</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Chegamos rapidamente até seu local com total agilidade e pontualidade.
+                </p>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdAttachMoney size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Preço Justo</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Orçamento transparente, sem surpresas nem cobranças indevidas.
+                </p>
+              </div>
+
+              {/* Feature 5 */}
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-full border-2 border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-800 dark:text-slate-200 mb-4 bg-slate-50 dark:bg-slate-900 shadow-xs">
+                  <MdWorkspacePremium size={28} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 dark:text-white mb-2">Garantia de Serviço</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Todos os serviços executados possuem garantia total e nota do serviço.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 5. DEPOIMENTOS                                       */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span className="inline-block text-xs font-extrabold uppercase tracking-widest text-amber-500 mb-2">
+              DEPOIMENTOS
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-12">
+              O que nossos clientes dizem
+            </h2>
+
+            {/* 3 Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              
+              {/* Card 1 */}
+              <div className="flex flex-col justify-between p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
+                <div>
+                  <div className="flex gap-1 text-amber-400 mb-4">
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 leading-relaxed">
+                    &quot;Excelente profissional! Resolveu o problema elétrico da minha casa rapidamente e com muita segurança. Recomendo!&quot;
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+                    alt="Juliana P."
+                    className="w-11 h-11 rounded-full object-cover"
+                  />
+                  <div>
+                    <span className="block font-bold text-sm text-slate-900 dark:text-white">Juliana P.</span>
+                    <span className="block text-xs text-slate-500 dark:text-slate-400">Setor Bueno - Goiânia</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="flex flex-col justify-between p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
+                <div>
+                  <div className="flex gap-1 text-amber-400 mb-4">
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 leading-relaxed">
+                    &quot;Serviço de alta qualidade e preço justo. Chegou no horário combinado e deixou tudo funcionando perfeitamente.&quot;
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+                    alt="Ricardo M."
+                    className="w-11 h-11 rounded-full object-cover"
+                  />
+                  <div>
+                    <span className="block font-bold text-sm text-slate-900 dark:text-white">Ricardo M.</span>
+                    <span className="block text-xs text-slate-500 dark:text-slate-400">Jardim América - Goiânia</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="flex flex-col justify-between p-6 sm:p-8 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-left">
+                <div>
+                  <div className="flex gap-1 text-amber-400 mb-4">
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                    <MdStar size={20} />
+                  </div>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 italic mb-6 leading-relaxed">
+                    &quot;Atendimento rápido e eficiente! Já salvei o contato e recomendo para todos que precisarem de eletricista.&quot;
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+                    alt="Carlos T."
+                    className="w-11 h-11 rounded-full object-cover"
+                  />
+                  <div>
+                    <span className="block font-bold text-sm text-slate-900 dark:text-white">Carlos T.</span>
+                    <span className="block text-xs text-slate-500 dark:text-slate-400">Setor Marista - Goiânia</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex items-center justify-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700"></span>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ---------------------------------------------------- */}
+        {/* 6. FINAL CTA BANNER (DARK CARD)                      */}
+        {/* ---------------------------------------------------- */}
+        <section className="py-12 md:py-20 bg-white dark:bg-slate-950" id="contato">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            
+            <div className="bg-[#0B132B] rounded-3xl p-8 sm:p-12 md:p-16 text-white shadow-2xl relative overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                {/* Left CTA Text & Actions */}
+                <div className="lg:col-span-7 text-left">
+                  
+                  {/* Yellow Bolt Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
+                    <MdFlashOn size={28} />
+                  </div>
+
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight mb-3">
+                    Precisando de um eletricista em Goiânia?
+                  </h2>
+
+                  <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-xl">
+                    Fale agora mesmo e solicite seu orçamento!
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="Chamar no WhatsApp"
+                      className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-white hover:bg-slate-100 text-[#0B132B] text-base font-bold transition-all shadow-md gap-2.5"
+                    >
+                      <FaWhatsapp size={22} className="text-emerald-600" />
+                      <span>CHAMAR NO WHATSAPP</span>
+                    </a>
+
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="Ligar Agora"
+                      className="inline-flex cursor-pointer items-center justify-center rounded-xl px-7 py-4 bg-amber-500 hover:bg-amber-400 text-slate-950 text-base font-bold transition-all shadow-md gap-2.5"
+                    >
+                      <MdCall size={22} />
+                      <span>LIGAR AGORA</span>
+                    </a>
+                  </div>
+
+                </div>
+
+                {/* Right CTA Image */}
+                <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                  <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border border-slate-700/60">
+                    <img
+                      src="/gallery/eletricista-hero.webp"
+                      alt="Eletricista em atendimento rápido em Goiânia"
+                      className="w-full h-[260px] sm:h-[320px] object-cover"
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+      <FloatingWhatsappButton message={whatsappMsg} />
     </main>
   )
 }
